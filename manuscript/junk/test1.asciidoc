@@ -1,0 +1,60 @@
+[[ch1]]
+== Chapter 1
+
+=== Why CockroachDB?
+Why do we need a distributed SQL Database?
+
+I wanted this to be _italicized_, and this to be *bold*.
+
++This would be inline code+.
+
+My website is http://guyharrison.net[here].
+
+.Don't forget to use sidebars
+****
+they are very useful
+****
+
+[NOTE]
+====
+You can create notes
+====
+
+.Tips are like notes
+[TIP]
+====
+But they have a title
+====
+
+.Ditto with warnings
+[WARNING]
+====
+But they have a title
+====
+
+I don't know about footnotes footnote:[That's right]
+
+[[fig111]]
+.A missing picture
+image::imagefile.png["This is a figure"]
+
+[[ex1]]
+.Example of code sample
+====
+[source, go]
+----
+uri:="postgresql://root@localhost:26257/bank?ssl=disabled"
+conn, err := pgx.Connect(context.Background(), uri)
+if err != nil {
+	 fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
+	os.Exit(1)
+}
+----
+====
+
+
+
+
+
+This is my first asciidoc doc.  
+

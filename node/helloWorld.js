@@ -16,9 +16,9 @@ async function main() {
   try {
     await pgClient.connect();
     const data = await pgClient.query(
-      'SELECT  now()'
+      "SELECT CONCAT('Hello from CockroachDB at ',CAST (NOW() as STRING)) as hello"
     );
-    console.log('Time from database: ', data.rows[0].now);
+    console.log(data.rows[0].hello);
   } catch (error) {
     console.log(error.stack);
   }
