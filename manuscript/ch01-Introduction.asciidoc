@@ -1,0 +1,54 @@
+[[ch01]]
+== Introduction to CockroachDB
+
+CockroachDB is an open-source, distributed, transactional, relational SQL database system.  That's quite a mouthful!  But one way to look at it is that CockroachDB leverages both the strengths of the last generation of database systems - strong consistency, the power of SQL, and the relational model - and the strengths of modern distributed systems that allow CockroachDB to achieve global scale and continual availability. 
+
+To understand the strengths of CockroachDB, it's worth revisiting the evolution of database systems.  We'll see that CockroachDB is the latest in a succession of technology advances that make it a compelling addition to the database ecosystem.
+
+=== A Brief History of Databases
+
+Data storage and data processing is a core feature of human civilization.  The earliest written records - dating back 10,000 years - represented agricultural accounting records.  These cuneiform records, recorded on clay tablets, are genuinely analogous to the databases that support modern accounting systems such as Xero.  
+
+[[fig_cuniform]]
+.Cuniform table circa 3000BC footnote:[https://commons.wikimedia.org/wiki/File:Cuneiform_tablet-_administrative_account_of_barley_distribution_with_cylinder_seal_impression_of_a_male_figure,_hunting_dogs,_and_boars_MET_DT847.jpg]
+image::cuneiform.jpg["Cuneiform tablet"]
+
+However, today we generally use the term database to refer to a collection of information stored using digital computing technology - specifically a DataBase Management System (DBMS).
+
+==== Pre-relational Databases
+
+The first digital computers had negligible storage capacities and were used primarily for computation — for instance, the generation of ballistic tables, decryption of codes, and scientific calculation.  However, as magnetic tape and disks became mainstream in the 1950s, it became increasingly possible to use computers to store and process volumes of information that would be unwieldy by other means.  
+
+Early applications used simple flat files for data storage.  But it soon became obvious that the complexities of reliably and efficiently dealing with large amounts of data required a specialized application of its own.  Consequently, the first DBMS systems emerged. 
+
+Early DBMS systems ran within monolithic mainframe computers, which also were responsible for the application code.  The applications were tightly coupled with the database management system and processed data directly using procedural language directives.  By the 1970s, two models of database system were vying for dominance - the *Network* model and the *CODASYL* standard.  These models were represented by the major databases of the day *IMS* and *IDMS*. 
+
+These systems were great advances on their predecessors but had significant drawbacks.  Queries needed to be anticipated in advance of implementation, and only record-at-a-time processing was supported.  Even the simplest report required programming resources to implement, and all IT departments suffered from a huge backlog of reporting requests.
+
+==== The relational revolution
+
+In 1970, Edgar Codd wrote his seminal paper "A Relational Model of Data for Large Shared Data Banks”footnote:[http://www.seas.upenn.edu/~zives/03f/cis550/codd.pdf].  This paper outlined what Codd saw as fundamental issues in the design of existing DBMS systems:
+
+* Existing DBMS systems merged physical and logical representations of data in a way that often complicated requests for data and created difficulties in satisfying requests that were not anticipated during the physical design. 
+* There was no formal standard for data representation.  As a mathematician, Codd was well versed in formal data structures;  he felt these structures had a role in Data management systems. 
+* Existing DBMS systems were too hard to use.  To fulfill their potential,  DBMS systems needed to be accessible to those without advanced programming skills.  
+
+The relational model described a means of logically representing data that was independent of the underlying storage mechanism.  It required a _query language_ that could be used to answer any question that could be satisfied by the data. 
+
+The relational model defines fundamental building blocks of a relational database: 
+
+* *Tuples* are a set of *attribute* values. In an actual database system, a tuple corresponds to a *row*, and an attribute to a column *value*.
+
+• A *relation* is a collection of distinct tuples and corresponds to a *table* in relational database implementations.
+
+• *Constraints* enforce consistency and define relationaships between tuples.
+
+• Various *Operations* are defined such as joins, projections, unions, and so on. Operations on relationas always return relations.  In practice, the output of a SQL query returns data in a table like structure.
+
+[[fig_relationalModel]]
+.Data represented in relational structure 
+[File:relationalData.png]
+image::relationalData.png["Relational Data"]
+
+==== The SQL Language
+
