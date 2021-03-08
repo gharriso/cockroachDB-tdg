@@ -1,0 +1,8 @@
+create database json;
+
+use json;
+
+CREATE TABLE public.customersjson (
+	customerid bigint NOT NULL primary key,
+	jsondata jsonb NULL 
+);
