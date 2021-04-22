@@ -1,8 +1,14 @@
+minikube start --cpus=6 --memory=12000mb --profile=crdb  --driver=hyperkit
+
 kubectl apply -f https://raw.githubusercontent.com/cockroachdb/cockroach-operator/master/config/crd/bases/crdb.cockroachlabs.com_crdbclusters.yaml
 
 kubectl apply -f https://raw.githubusercontent.com/cockroachdb/cockroach-operator/master/manifests/operator.yaml
 
-kubectl apply -f example.yaml
+curl -O https://raw.githubusercontent.com/cockroachdb/cockroach-operator/master/examples/example.yaml
+
+cat example.yaml|sed 's/60Gi/10Gi/' >myconfig.yaml
+
+kubectl apply -f myconfig.yaml
 
 kubectl exec -it cockroachdb-2 -- ./cockroach sql --certs-dir cockroach-certs
 
