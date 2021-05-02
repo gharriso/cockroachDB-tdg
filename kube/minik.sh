@@ -12,6 +12,8 @@ kubectl apply -f myconfig.yaml
 
 kubectl exec -it cockroachdb-2 -- ./cockroach sql --certs-dir cockroach-certs
 
+kubectl exec -it cockroachdb-2 -- ./cockroach workload init bank --certs-dir cockroach-certs
+
 CREATE USER roach WITH PASSWORD 'Q7gc8rEdS';
 grant admin to roach;
 alter user root with password 'root';
