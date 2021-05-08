@@ -26,11 +26,13 @@ kubectl edit service cockroachdb-public
 kubectl expose service cockroachdb-public --type=NodePort 
 #kubectl expose service cockroachdb-public --port=26257 --target-port=26257 --name=cp --type=LoadBalancer
 kubectl get service
-mkdir certs;cd certs
-kubectl exec cockroachdb-0 -it -- cat cockroach-certs/ca.crt >ca.crt
-kubectl exec cockroachdb-0 -it -- cat cockroach-certs/client.root.key >client.root.key
-kubectl exec cockroachdb-0 -it -- cat cockroach-certs/client.root.crt >client.root.crt
 
-nohup kubectl port-forward services/cockroachdb-public 26257:26257 8080:8080 -n default >portForward2.log & 
- 
-cockroach sql --port 26257 --certs-dir certs 
+rm -rf certs
+mkdir certs 
+kubectl exec cockroachdb-0 -it -- cat cockroach-certs/ca.crt >certs/ca.crt
+kubectl exec cockroachdb-0 -it -- cat cockroach-certs/client.root.key >certs/client.root.key
+kubectl exec cockroachdb-0 -it -- cat cockroach-certs/client.root.crt >certs/client.root.crt
+chmod 600 certs/*
+
+kubectl port-forward services/cockroachdb-public 26258:26257 -n default   &
+cockroach sql --port 26258 --certs-dir certs 
