@@ -1,0 +1,7 @@
+order_by ::=
+	'ORDER' 'BY' ( ( ( ',' ( a_expr ( 'ASC' | 'DESC' |  ) ( 'NULLS' 'FIRST' | 'NULLS' 'LAST' |  )   ) ) )* |
+ 'INDEX' table_name '@' index_name  |
+                      'PRIMARY' 'KEY' table_name ( 'ASC' | 'DESC' |  ) | 
+    )
+
+

@@ -1,0 +1,5 @@
+window_function ::=
+	aggregateFunction "OVER" "(" (|"PARTITION BY" expr) (|"ORDER BY" expr) ")" "AS" alias
+    
+
+

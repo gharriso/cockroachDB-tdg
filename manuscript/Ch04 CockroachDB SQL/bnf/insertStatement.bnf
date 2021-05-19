@@ -1,0 +1,4 @@
+insert_stmt ::=
+	  'INSERT' 'INTO' ( table_name | table_name  ) ( '(' ( ( ( column_name ) ) ( ( ',' ( column_name ) ) )* ) ')'  ( select_stmt |  
+ 'VALUES' '(' ( ( ( value ) ) ( ( ',' ( value ) ) )* ) ')' ) ) ( 'RETURNING' ( ( target_elem ) ( ( ',' target_elem ) )* ) | 'RETURNING' 'NOTHING' |  )
+

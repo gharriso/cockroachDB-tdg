@@ -1,0 +1,7 @@
+table_constraint ::=
+	'CONSTRAINT' constraint_name 'CHECK (' a_expr ')'
+	| 'CONSTRAINT' constraint_name 'UNIQUE (' name_list ')' ('USING' index_definition )
+	| 'CONSTRAINT' constraint_name 'PRIMARY' 'KEY' '(' name_list ')' 'USING' 'HASH' 'WITH' 'BUCKET_COUNT' '=' n_buckets 
+	| 'CONSTRAINT' constraint_name 'PRIMARY' 'KEY' '(' name_list ')'  
+	| 'CONSTRAINT' constraint_name 'FOREIGN' 'KEY' '(' name_list ')' 'REFERENCES' table_name '(' opt_column_list ')'
+

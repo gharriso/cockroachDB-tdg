@@ -1,0 +1,5 @@
+simple_select_clause ::=
+	'SELECT' ( 'ALL' |  ) ( ( target_elem ) ( ( ',' target_elem ) )* ) 
+( 'FROM' ( ( table_ref ) ( (  'JOIN' table_ref ('ON'|'USING') '(' join_criteria ')' ) )* ) 
+ ( ( 'WHERE' a_expr ) |  ) ( 'GROUP' 'BY' group_by_list |  ) ( 'HAVING' a_expr |  ) ( 'WINDOW' window_definition_list |  )
+	

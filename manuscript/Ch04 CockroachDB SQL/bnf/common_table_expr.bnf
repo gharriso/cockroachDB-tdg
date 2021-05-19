@@ -1,0 +1,5 @@
+common_table_expr ::=
+	WITH ( RECURSIVE | ) table_alias_name ( columnList | ) 'AS' ( (NOT|)MATERIALIZED|) 
+    '(' selectStatement ')'
+     ( selectStatement|InsertStatement|UpdateStatement|DeleteStatement )
+	 

@@ -1,0 +1,2 @@
+create_table_stmt ::=
+	'CREATE TABLE' table_name '(' ( ( ( ( ',' ( column_def | index_def | family_def | table_constraint  ) ) )* ) |  ) ')'  (AS select_stmt)

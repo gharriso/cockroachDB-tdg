@@ -1,0 +1,7 @@
+create_index_stmt ::=
+	'CREATE' ( 'UNIQUE' | 'INVERTED'  ) 'INDEX'  index_name 'ON' table_name  '(' 
+( ( (   expr  ) ) ( ( ',' (  expr ) ) )* ) 
+')' ( 'USING' 'HASH' 'WITH' 'BUCKET_COUNT' '=' n_buckets |  ) ( ( | 'STORING'  ) '(' name_list ')' |  ) ( 'WITH' '(' ( ( storage_parameter ) ( ( ',' storage_parameter ) )* ) ')' ) opt_where_clause
+
+
+
