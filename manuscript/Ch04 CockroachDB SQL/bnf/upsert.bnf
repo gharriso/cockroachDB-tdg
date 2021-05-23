@@ -1,0 +1,4 @@
+upsert_stmt ::=
+	'UPSERT' 'INTO' table_name (| '(' ( ( ( column_name ) ) ( ( ',' ( column_name ) ) )* ) ')') 
+              (' VALUES (' ( ( ( column_name ) ) ( ( ',' ( column_name ) ) )* ) ')'| select_stmt   ) 
+              ( 'RETURNING' target_list | 'RETURNING' 'NOTHING' |  )

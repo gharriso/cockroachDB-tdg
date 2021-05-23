@@ -1,0 +1,2 @@
+drop_table_stmt ::=
+	'DROP' 'TABLE' table_name ( ( ',' table_name ) )* ( 'CASCADE' | 'RESTRICT' | )
