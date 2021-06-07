@@ -1,8 +1,22 @@
 DROP TABLE people;
 
-CREATE TABLE people ( id INT PRIMARY KEY, firstName VARCHAR NOT NULL, lastName VARCHAR NOT NULL, dateOfBirth timestamp NOT NULL, phoneNumber VARCHAR NOT NULL, fullName STRING AS (CONCAT(firstName, ' ', lastName) ) STORED, age int AS (now()-dateOfBirth) STORED );
+CREATE TABLE people ( id INT PRIMARY KEY, firstName VARCHAR NOT NULL, lastName VARCHAR NOT NULL, dateOfBirth timestamp NOT NULL, phoneNumber VARCHAR NOT NULL, 
+fullName STRING AS (CONCAT(firstName, ' ', lastName) ) STORED, 
+age int AS (now()-dateOfBirth) VIRTUAL );
 
-CREATE TABLE people ( id INT PRIMARY KEY, firstName VARCHAR NOT NULL, lastName VARCHAR NOT NULL, dateOfBirth timestamp NOT NULL, phoneNumber VARCHAR NOT NULL, fullName STRING AS (CONCAT(firstName, ' ', lastName) ) STORED );
+CREATE TABLE people ( id INT PRIMARY KEY, firstName VARCHAR NOT NULL, lastName VARCHAR NOT NULL, dateOfBirth timestamp NOT NULL, phoneNumber VARCHAR  NULL, 
+fullName STRING AS (CONCAT(firstName, ' ', lastName) ) STORED );
+
+INSERT INTO people (id, firstName, lastName, dateOfBirth)
+VALUES(1, 'Guy', 'Harrison', '21-JUN-1960');
+
+SELECT * FROM people;
+
+UPDATE people SET firstname='Fred';
+
+SELECT * FROM people;
+USE movr;
+SELECT CAST(revenue AS int) FROM rides;
 
 CREATE INDEX people_namedob_ix ON
 people (lastName, firstName, dateOfBirth);
@@ -79,9 +93,10 @@ EXPLAIN SELECT *
 FROM people
 WHERE personData @> '{"phone":"0419533988"}';
 
-ALTER TABLE people ADD phone STRING AS (personData->>'phone') STORED;
+ALTER TABLE people ADD phone STRING AS (personData->>'phone') VIRTUAL;
 
 CREATE INDEX people_phone_idx ON people(phone);
+
 
 EXPLAIN SELECT id
 FROM people

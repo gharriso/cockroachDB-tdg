@@ -21,7 +21,12 @@ SELECT id FROM "users" u WHERE id NOT IN (SELECT user_id FROM user_promo_codes)
   
 SELECT * FROM USERS;
 
-UPSERT INTO user_promo_codes (user_id,city,code,timestamp,usage_count)
+UPSERT INTO user_promo_codes 
+  (user_id,city,code,timestamp,usage_count)
 SELECT id,city,'NewPromo',now(),0
   FROM "users" 
+  
+DELETE FROM user_promo_codes
+ WHERE code='NewPromo'
+RETURNING(user_id);
  

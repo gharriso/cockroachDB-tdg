@@ -1,0 +1,5 @@
+column_definition ::=
+	column_name datatype (|(|NOT)NULL) (|PRIMARY KEY) (|REFERENCES...) 
+        (|UNIQUE) (|CONSTRAINT contraint_name constraint_definition)
+        (|AS expr (STORED|VIRTUAL)) 
+        (|DEFAULT expr) (|FAMILY column_family_name)

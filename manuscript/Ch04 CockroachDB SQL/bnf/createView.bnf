@@ -1,0 +1,5 @@
+create_view_stmt ::=
+	'CREATE' (|'OR REPLACE') (|'MATERIALIZED') 'VIEW' view_name (|'(' column_name ')') 'AS' select_stmt
+
+
+ 

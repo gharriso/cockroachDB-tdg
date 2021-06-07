@@ -1,0 +1,70 @@
+\set errexit false;
+
+DROP TABLE baseTable;
+
+CREATE TABLE baseTable AS 
+with recursive series as (
+	select 1 as id union all
+	select id + 1 as id
+   from series
+   where id < 100000)
+  SELECT id,random() rnumber, md5(random()::STRING) rstring FROM series;
+  
+
+
+
+DROP TABLE seq_keyed;
+DROP SEQUENCE seq_seq;
+CREATE SEQUENCE seq_seq;
+
+CREATE TABLE seq_keyed  (
+	pk INT NOT NULL PRIMARY KEY DEFAULT nextval('seq_seq'),
+	id int,
+	rnumber float,
+	rstring string
+);
+
+INSERT INTO seq_keyed (id,rnumber,rstring) SELECT * FROM basetable;
+
+DROP TABLE serial_keyed;
+
+CREATE TABLE serial_keyed  (
+	pk SERIAL PRIMARY KEY NOT NULL  ,
+	id int,
+	rnumber float,
+	rstring string
+);
+
+INSERT INTO serial_keyed (id,rnumber,rstring) SELECT * FROM basetable;
+;
+
+DROP TABLE uuid_keyed;
+
+CREATE TABLE uuid_keyed  (
+	pk uuid NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(), 
+	id int,
+	rnumber float,
+	rstring string
+);
+
+INSERT INTO uuid_keyed (id,rnumber,rstring) SELECT * FROM basetable;
+
+SET experimental_enable_hash_sharded_indexes=on;
+
+DROP TABLE hash_keyed;
+
+CREATE TABLE hash_keyed  (
+	pk int NOT NULL,
+	id int,
+	rnumber float,
+	rstring STRING,
+	PRIMARY KEY (pk) USING HASH WITH BUCKET_COUNT=6
+);
+
+INSERT INTO hash_keyed (pk,id,rnumber,rstring) SELECT id,id,rnumber,rstring FROM basetable;
+
+
+
+
+ 
+
