@@ -7,10 +7,26 @@ with recursive series as (
 	select 1 as id union all
 	select id + 1 as id
    from series
-   where id < 100000)
+   where id < 20000)
   SELECT id,random() rnumber, md5(random()::STRING) rstring FROM series;
   
 
+
+ 
+DROP TABLE seq_keyed;
+DROP SEQUENCE seq_seq;
+CREATE SEQUENCE seq_seq;
+
+CREATE TABLE seq_keyed  (
+	pk INT NOT NULL PRIMARY KEY   ,
+	id int,
+	rnumber float,
+	rstring string
+);
+
+SELECT 'integer';
+
+INSERT INTO seq_keyed (pk,id,rnumber,rstring) SELECT id,id,rnumber,rstring FROM basetable;
 
 
 DROP TABLE seq_keyed;
@@ -24,6 +40,8 @@ CREATE TABLE seq_keyed  (
 	rstring string
 );
 
+SELECT 'sequence';
+
 INSERT INTO seq_keyed (id,rnumber,rstring) SELECT * FROM basetable;
 
 DROP TABLE serial_keyed;
@@ -34,6 +52,8 @@ CREATE TABLE serial_keyed  (
 	rnumber float,
 	rstring string
 );
+
+SELECT 'serial';
 
 INSERT INTO serial_keyed (id,rnumber,rstring) SELECT * FROM basetable;
 ;
@@ -46,6 +66,8 @@ CREATE TABLE uuid_keyed  (
 	rnumber float,
 	rstring string
 );
+
+SELECT 'UUID';
 
 INSERT INTO uuid_keyed (id,rnumber,rstring) SELECT * FROM basetable;
 
@@ -60,6 +82,8 @@ CREATE TABLE hash_keyed  (
 	rstring STRING,
 	PRIMARY KEY (pk) USING HASH WITH BUCKET_COUNT=6
 );
+
+SELECT 'hash';
 
 INSERT INTO hash_keyed (pk,id,rnumber,rstring) SELECT id,id,rnumber,rstring FROM basetable;
 
