@@ -29,6 +29,7 @@ async function main() {
         }
         await createTables(connections[0]);
         const data = dataBatch(nRows);
+        await insertTest(connections, 'int_keyed', true, data);
         await insertTest(connections, 'seq_keyed', false, data);
         await insertTest(connections, 'uuid_keyed', false, data);
         await insertTest(connections, 'serial_keyed', false, data);
@@ -60,7 +61,7 @@ async function insertTest(connections, tableName, insertPk, data) {
         sqlText = `INSERT INTO ${tableName} (pk,id,rnumber,rstring) VALUES($1,$2,$3, $4)`;
     }
 
-    const promises = [];
+    const promises = []; 
     const pi = 0;
     let di = 0;
     for (let dataCounter = 0; dataCounter < data.length; dataCounter += connections.length) {
@@ -92,6 +93,7 @@ async function createTables(connection) {
     statements.push('DROP TABLE serial_keyed');
     statements.push('DROP TABLE uuid_keyed');
     statements.push('DROP TABLE hash_keyed');
+    statements.push('DROP TABLE int_keyed');
     statements.push('DROP SEQUENCE seq_seq;');
     statements.push('CREATE SEQUENCE seq_seq');
     statements.push(`
@@ -111,6 +113,13 @@ async function createTables(connection) {
     statements.push(`
     CREATE TABLE uuid_keyed  (
         pk uuid NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(), 
+        id int,
+        rnumber float,
+        rstring string
+    )`);
+    statements.push(`
+    CREATE TABLE int_keyed  (
+        pk int not null primary key,
         id int,
         rnumber float,
         rstring string
