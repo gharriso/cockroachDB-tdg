@@ -10,6 +10,10 @@ INSERT INTO newRides SELECT * FROM newRides;
 INSERT INTO newRides SELECT * FROM newRides;
 INSERT INTO newRides SELECT * FROM newRides;
 INSERT INTO newRides SELECT * FROM newRides;
+INSERT INTO newRides SELECT * FROM newRides;
+INSERT INTO newRides SELECT * FROM newRides;
+INSERT INTO newRides SELECT * FROM newRides;
+INSERT INTO newRides SELECT * FROM newRides;
 
 CREATE TABLE ridetestNoFK (
 	id UUID NOT NULL,
@@ -40,7 +44,7 @@ CREATE TABLE ridetestFK (
 );
 
 ALTER TABLE ridetestFK ADD CONSTRAINT ridetestFK1 FOREIGN KEY (city, rider_id) REFERENCES users(city, id);
-ALTER TABLE ridetestFK ADD CONSTRAINT ridetestFK1 FOREIGN KEY (vehicle_city, vehicle_id) REFERENCES vehicles(city, id);
+ALTER TABLE ridetestFK ADD CONSTRAINT ridetestFK2 FOREIGN KEY (vehicle_city, vehicle_id) REFERENCES vehicles(city, id);
 
  
 

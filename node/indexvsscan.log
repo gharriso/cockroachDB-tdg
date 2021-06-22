@@ -1,0 +1,2500 @@
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '0.5 days')
+planning time: 5ms
+execution time: 119ms
+distribution: full
+vectorized: true
+rows read from KV: 1,440 (109 KiB)
+cumulative time spent in KV: 109ms
+maximum memory usage: 250 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 720
+    │ KV rows read: 720
+    │ KV bytes read: 71 KiB
+    │ estimated row count: 754
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 720
+          KV rows read: 720
+          KV bytes read: 38 KiB
+          estimated row count: 754 (0.14% of the table; stats collected 0 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-31 12:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '1 days')
+planning time: 815µs
+execution time: 119ms
+distribution: full
+vectorized: true
+rows read from KV: 2,880 (218 KiB)
+cumulative time spent in KV: 113ms
+maximum memory usage: 406 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 1,440
+    │ KV rows read: 1,440
+    │ KV bytes read: 142 KiB
+    │ estimated row count: 1,465
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 1,440
+          KV rows read: 1,440
+          KV bytes read: 76 KiB
+          estimated row count: 1,465 (0.28% of the table; stats collected 0 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-31 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '2 days')
+planning time: 715µs
+execution time: 224ms
+distribution: full
+vectorized: true
+rows read from KV: 5,760 (436 KiB)
+cumulative time spent in KV: 215ms
+maximum memory usage: 598 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 2,880
+    │ KV rows read: 2,880
+    │ KV bytes read: 284 KiB
+    │ estimated row count: 2,925
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 2,880
+          KV rows read: 2,880
+          KV bytes read: 152 KiB
+          estimated row count: 2,925 (0.56% of the table; stats collected 1 second ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-30 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '3 days')
+planning time: 773µs
+execution time: 352ms
+distribution: full
+vectorized: true
+rows read from KV: 8,640 (654 KiB)
+cumulative time spent in KV: 339ms
+maximum memory usage: 758 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 4,320
+    │ KV rows read: 4,320
+    │ KV bytes read: 426 KiB
+    │ estimated row count: 4,253
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 4,320
+          KV rows read: 4,320
+          KV bytes read: 228 KiB
+          estimated row count: 4,253 (0.81% of the table; stats collected 1 second ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-29 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '4 days')
+planning time: 801µs
+execution time: 619ms
+distribution: full
+vectorized: true
+rows read from KV: 11,520 (872 KiB)
+cumulative time spent in KV: 605ms
+maximum memory usage: 918 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 5,760
+    │ KV rows read: 5,760
+    │ KV bytes read: 568 KiB
+    │ estimated row count: 5,641
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 5,760
+          KV rows read: 5,760
+          KV bytes read: 304 KiB
+          estimated row count: 5,641 (1.1% of the table; stats collected 2 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-28 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '5 days')
+planning time: 1ms
+execution time: 643ms
+distribution: full
+vectorized: true
+rows read from KV: 14,400 (1.1 MiB)
+cumulative time spent in KV: 624ms
+maximum memory usage: 1.1 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 7,200
+    │ KV rows read: 7,200
+    │ KV bytes read: 710 KiB
+    │ estimated row count: 7,025
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 7,200
+          KV rows read: 7,200
+          KV bytes read: 380 KiB
+          estimated row count: 7,025 (1.3% of the table; stats collected 2 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-27 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '5 days')
+planning time: 353µs
+execution time: 550ms
+distribution: full
+vectorized: true
+rows read from KV: 14,400 (1.1 MiB)
+cumulative time spent in KV: 538ms
+maximum memory usage: 1.1 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 7,200
+    │ KV rows read: 7,200
+    │ KV bytes read: 710 KiB
+    │ estimated row count: 7,025
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 7,200
+          KV rows read: 7,200
+          KV bytes read: 380 KiB
+          estimated row count: 7,025 (1.3% of the table; stats collected 3 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-27 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '7 days')
+planning time: 1ms
+execution time: 879ms
+distribution: full
+vectorized: true
+rows read from KV: 20,160 (1.5 MiB)
+cumulative time spent in KV: 859ms
+maximum memory usage: 1.4 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 10,080
+    │ KV rows read: 10,080
+    │ KV bytes read: 995 KiB
+    │ estimated row count: 10,404
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 10,080
+          KV rows read: 10,080
+          KV bytes read: 532 KiB
+          estimated row count: 10,404 (2.0% of the table; stats collected 4 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-25 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '8 days')
+planning time: 783µs
+execution time: 914ms
+distribution: full
+vectorized: true
+rows read from KV: 23,040 (1.7 MiB)
+cumulative time spent in KV: 890ms
+maximum memory usage: 1.5 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 11,520
+    │ KV rows read: 11,520
+    │ KV bytes read: 1.1 MiB
+    │ estimated row count: 11,969
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 11,520
+          KV rows read: 11,520
+          KV bytes read: 608 KiB
+          estimated row count: 11,969 (2.3% of the table; stats collected 5 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-24 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '9 days')
+planning time: 1ms
+execution time: 939ms
+distribution: full
+vectorized: true
+rows read from KV: 25,920 (1.9 MiB)
+cumulative time spent in KV: 908ms
+maximum memory usage: 1.7 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 12,960
+    │ KV rows read: 12,960
+    │ KV bytes read: 1.2 MiB
+    │ estimated row count: 13,466
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 12,960
+          KV rows read: 12,960
+          KV bytes read: 684 KiB
+          estimated row count: 13,466 (2.6% of the table; stats collected 6 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-23 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '10 days')
+planning time: 740µs
+execution time: 1s
+distribution: full
+vectorized: true
+rows read from KV: 28,800 (2.1 MiB)
+cumulative time spent in KV: 992ms
+maximum memory usage: 1.8 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 14,400
+    │ KV rows read: 14,400
+    │ KV bytes read: 1.4 MiB
+    │ estimated row count: 14,865
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 14,400
+          KV rows read: 14,400
+          KV bytes read: 760 KiB
+          estimated row count: 14,865 (2.8% of the table; stats collected 7 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-22 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '12 days')
+planning time: 491µs
+execution time: 1.2s
+distribution: full
+vectorized: true
+rows read from KV: 34,560 (2.6 MiB)
+cumulative time spent in KV: 1.1s
+maximum memory usage: 2.1 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 17,280
+    │ KV rows read: 17,280
+    │ KV bytes read: 1.7 MiB
+    │ estimated row count: 17,828
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 17,280
+          KV rows read: 17,280
+          KV bytes read: 912 KiB
+          estimated row count: 17,828 (3.4% of the table; stats collected 8 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-20 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '14 days')
+planning time: 764µs
+execution time: 1.5s
+distribution: full
+vectorized: true
+rows read from KV: 40,320 (3.0 MiB)
+cumulative time spent in KV: 1.4s
+maximum memory usage: 2.4 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 20,160
+    │ KV rows read: 20,160
+    │ KV bytes read: 1.9 MiB
+    │ estimated row count: 20,669
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 20,160
+          KV rows read: 20,160
+          KV bytes read: 1.0 MiB
+          estimated row count: 20,669 (3.9% of the table; stats collected 9 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-18 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '16 days')
+planning time: 842µs
+execution time: 1.8s
+distribution: full
+vectorized: true
+rows read from KV: 46,080 (3.4 MiB)
+cumulative time spent in KV: 1.7s
+maximum memory usage: 2.8 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 23,040
+    │ KV rows read: 23,040
+    │ KV bytes read: 2.2 MiB
+    │ estimated row count: 23,204
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 23,040
+          KV rows read: 23,040
+          KV bytes read: 1.2 MiB
+          estimated row count: 23,204 (4.4% of the table; stats collected 11 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-16 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '18 days')
+planning time: 2ms
+execution time: 2.2s
+distribution: full
+vectorized: true
+rows read from KV: 51,840 (3.8 MiB)
+cumulative time spent in KV: 2.1s
+maximum memory usage: 3.1 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 25,920
+    │ KV rows read: 25,920
+    │ KV bytes read: 2.5 MiB
+    │ estimated row count: 25,728
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 25,920
+          KV rows read: 25,920
+          KV bytes read: 1.3 MiB
+          estimated row count: 25,728 (4.9% of the table; stats collected 13 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-14 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '20 days')
+planning time: 627µs
+execution time: 2s
+distribution: full
+vectorized: true
+rows read from KV: 57,600 (4.3 MiB)
+cumulative time spent in KV: 2s
+maximum memory usage: 3.4 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 28,800
+    │ KV rows read: 28,800
+    │ KV bytes read: 2.8 MiB
+    │ estimated row count: 28,748
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 28,800
+          KV rows read: 28,800
+          KV bytes read: 1.5 MiB
+          estimated row count: 28,748 (5.5% of the table; stats collected 15 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-12 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '30 days')
+planning time: 634µs
+execution time: 3.1s
+distribution: full
+vectorized: true
+rows read from KV: 86,400 (6.4 MiB)
+cumulative time spent in KV: 3s
+maximum memory usage: 4.9 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 43,200
+    │ KV rows read: 43,200
+    │ KV bytes read: 4.2 MiB
+    │ estimated row count: 43,747
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 43,200
+          KV rows read: 43,200
+          KV bytes read: 2.2 MiB
+          estimated row count: 43,747 (8.3% of the table; stats collected 18 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-02 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '40 days')
+planning time: 894µs
+execution time: 4.2s
+distribution: full
+vectorized: true
+rows read from KV: 115,200 (3.9 MiB)
+cumulative time spent in KV: 4.1s
+maximum memory usage: 5.4 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 57,600
+    │ KV rows read: 57,600
+    │ KV bytes read: 981 KiB
+    │ estimated row count: 59,164
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 57,600
+          KV rows read: 57,600
+          KV bytes read: 3.0 MiB
+          estimated row count: 59,164 (11% of the table; stats collected 23 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-11-22 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '90 days')
+planning time: 821µs
+execution time: 820ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 801ms
+maximum memory usage: 200 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 129,600
+    │ estimated row count: 129,591
+    │ filter: measurement_timestamp > '2021-10-03 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 5 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '180 days')
+planning time: 792µs
+execution time: 896ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 875ms
+maximum memory usage: 210 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 259,200
+    │ estimated row count: 259,197
+    │ filter: measurement_timestamp > '2021-07-05 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 6 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '270 days')
+planning time: 565µs
+execution time: 821ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 797ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 388,800
+    │ estimated row count: 388,803
+    │ filter: measurement_timestamp > '2021-04-06 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 7 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '360 days')
+planning time: 1ms
+execution time: 751ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 731ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 518,400
+    │ estimated row count: 518,410
+    │ filter: measurement_timestamp > '2021-01-06 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 8 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '0.5 days')
+planning time: 620µs
+execution time: 727ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 717ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 720
+    │ estimated row count: 705
+    │ filter: measurement_timestamp > '2021-12-31 12:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 8 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '1 days')
+planning time: 879µs
+execution time: 731ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 720ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 1,440
+    │ estimated row count: 1,425
+    │ filter: measurement_timestamp > '2021-12-31 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 9 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '2 days')
+planning time: 621µs
+execution time: 719ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 708ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 2,880
+    │ estimated row count: 2,865
+    │ filter: measurement_timestamp > '2021-12-30 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 10 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '3 days')
+planning time: 435µs
+execution time: 789ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 777ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 4,320
+    │ estimated row count: 4,305
+    │ filter: measurement_timestamp > '2021-12-29 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 10 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '4 days')
+planning time: 800µs
+execution time: 1.1s
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 1.1s
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 5,760
+    │ estimated row count: 5,745
+    │ filter: measurement_timestamp > '2021-12-28 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 12 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '5 days')
+planning time: 1ms
+execution time: 860ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 845ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 7,200
+    │ estimated row count: 7,185
+    │ filter: measurement_timestamp > '2021-12-27 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 12 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '5 days')
+planning time: 610µs
+execution time: 852ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 838ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 7,200
+    │ estimated row count: 7,185
+    │ filter: measurement_timestamp > '2021-12-27 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 13 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '7 days')
+planning time: 1ms
+execution time: 807ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 794ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 10,080
+    │ estimated row count: 10,065
+    │ filter: measurement_timestamp > '2021-12-25 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 14 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '8 days')
+planning time: 1ms
+execution time: 898ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 883ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 11,520
+    │ estimated row count: 11,506
+    │ filter: measurement_timestamp > '2021-12-24 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 15 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '9 days')
+planning time: 792µs
+execution time: 871ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 857ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 12,960
+    │ estimated row count: 12,946
+    │ filter: measurement_timestamp > '2021-12-23 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 16 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '10 days')
+planning time: 969µs
+execution time: 744ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 732ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 14,400
+    │ estimated row count: 14,386
+    │ filter: measurement_timestamp > '2021-12-22 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 17 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '12 days')
+planning time: 798µs
+execution time: 733ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 720ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 17,280
+    │ estimated row count: 17,266
+    │ filter: measurement_timestamp > '2021-12-20 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 17 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '14 days')
+planning time: 973µs
+execution time: 793ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 781ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 20,160
+    │ estimated row count: 20,146
+    │ filter: measurement_timestamp > '2021-12-18 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 18 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '16 days')
+planning time: 656µs
+execution time: 779ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 767ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 23,040
+    │ estimated row count: 23,026
+    │ filter: measurement_timestamp > '2021-12-16 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 19 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '18 days')
+planning time: 796µs
+execution time: 729ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 716ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 25,920
+    │ estimated row count: 25,906
+    │ filter: measurement_timestamp > '2021-12-14 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 20 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '20 days')
+planning time: 978µs
+execution time: 776ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 764ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 28,800
+    │ estimated row count: 28,786
+    │ filter: measurement_timestamp > '2021-12-12 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 21 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '30 days')
+planning time: 686µs
+execution time: 942ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 923ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 43,200
+    │ estimated row count: 43,187
+    │ filter: measurement_timestamp > '2021-12-02 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 21 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '40 days')
+planning time: 880µs
+execution time: 884ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 869ms
+maximum memory usage: 190 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 57,600
+    │ estimated row count: 57,588
+    │ filter: measurement_timestamp > '2021-11-22 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 22 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '90 days')
+planning time: 698µs
+execution time: 849ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 832ms
+maximum memory usage: 200 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 129,600
+    │ estimated row count: 129,591
+    │ filter: measurement_timestamp > '2021-10-03 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 23 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '180 days')
+planning time: 888µs
+execution time: 947ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 924ms
+maximum memory usage: 210 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 259,200
+    │ estimated row count: 259,197
+    │ filter: measurement_timestamp > '2021-07-05 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 24 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '270 days')
+planning time: 1ms
+execution time: 930ms
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 908ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 388,800
+    │ estimated row count: 388,803
+    │ filter: measurement_timestamp > '2021-04-06 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 25 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@primary  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '360 days')
+planning time: 684µs
+execution time: 1s
+distribution: full
+vectorized: true
+rows read from KV: 525,601 (51 MiB)
+cumulative time spent in KV: 1s
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n1
+    │ actual row count: 518,400
+    │ estimated row count: 518,410
+    │ filter: measurement_timestamp > '2021-01-06 00:00:00'
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 525,601
+          KV rows read: 525,601
+          KV bytes read: 51 MiB
+          estimated row count: 525,601 (100% of the table; stats collected 26 seconds ago)
+          table: timeseries_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '0.5 days')
+planning time: 671µs
+execution time: 195ms
+distribution: full
+vectorized: true
+rows read from KV: 1,440 (109 KiB)
+cumulative time spent in KV: 191ms
+maximum memory usage: 306 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 720
+    │ KV rows read: 720
+    │ KV bytes read: 71 KiB
+    │ estimated row count: 705
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 720
+          KV rows read: 720
+          KV bytes read: 38 KiB
+          estimated row count: 705 (0.13% of the table; stats collected 26 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-31 12:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '1 days')
+planning time: 948µs
+execution time: 152ms
+distribution: full
+vectorized: true
+rows read from KV: 2,880 (218 KiB)
+cumulative time spent in KV: 146ms
+maximum memory usage: 406 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 1,440
+    │ KV rows read: 1,440
+    │ KV bytes read: 142 KiB
+    │ estimated row count: 1,425
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 1,440
+          KV rows read: 1,440
+          KV bytes read: 76 KiB
+          estimated row count: 1,425 (0.27% of the table; stats collected 27 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-31 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '2 days')
+planning time: 832µs
+execution time: 252ms
+distribution: full
+vectorized: true
+rows read from KV: 5,760 (436 KiB)
+cumulative time spent in KV: 244ms
+maximum memory usage: 598 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 2,880
+    │ KV rows read: 2,880
+    │ KV bytes read: 284 KiB
+    │ estimated row count: 2,865
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 2,880
+          KV rows read: 2,880
+          KV bytes read: 152 KiB
+          estimated row count: 2,865 (0.55% of the table; stats collected 27 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-30 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '3 days')
+planning time: 2ms
+execution time: 335ms
+distribution: full
+vectorized: true
+rows read from KV: 8,640 (654 KiB)
+cumulative time spent in KV: 322ms
+maximum memory usage: 758 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 4,320
+    │ KV rows read: 4,320
+    │ KV bytes read: 426 KiB
+    │ estimated row count: 4,305
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 4,320
+          KV rows read: 4,320
+          KV bytes read: 228 KiB
+          estimated row count: 4,305 (0.82% of the table; stats collected 27 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-29 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '4 days')
+planning time: 698µs
+execution time: 580ms
+distribution: full
+vectorized: true
+rows read from KV: 11,520 (872 KiB)
+cumulative time spent in KV: 567ms
+maximum memory usage: 918 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 5,760
+    │ KV rows read: 5,760
+    │ KV bytes read: 568 KiB
+    │ estimated row count: 5,745
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 5,760
+          KV rows read: 5,760
+          KV bytes read: 304 KiB
+          estimated row count: 5,745 (1.1% of the table; stats collected 28 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-28 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '5 days')
+planning time: 2ms
+execution time: 648ms
+distribution: full
+vectorized: true
+rows read from KV: 14,400 (1.1 MiB)
+cumulative time spent in KV: 633ms
+maximum memory usage: 1.1 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 7,200
+    │ KV rows read: 7,200
+    │ KV bytes read: 710 KiB
+    │ estimated row count: 7,185
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 7,200
+          KV rows read: 7,200
+          KV bytes read: 380 KiB
+          estimated row count: 7,185 (1.4% of the table; stats collected 28 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-27 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '5 days')
+planning time: 311µs
+execution time: 723ms
+distribution: full
+vectorized: true
+rows read from KV: 14,400 (1.1 MiB)
+cumulative time spent in KV: 707ms
+maximum memory usage: 1.1 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 7,200
+    │ KV rows read: 7,200
+    │ KV bytes read: 710 KiB
+    │ estimated row count: 7,185
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 7,200
+          KV rows read: 7,200
+          KV bytes read: 380 KiB
+          estimated row count: 7,185 (1.4% of the table; stats collected 29 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-27 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '7 days')
+planning time: 991µs
+execution time: 854ms
+distribution: full
+vectorized: true
+rows read from KV: 20,160 (1.5 MiB)
+cumulative time spent in KV: 834ms
+maximum memory usage: 1.4 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 10,080
+    │ KV rows read: 10,080
+    │ KV bytes read: 995 KiB
+    │ estimated row count: 10,065
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 10,080
+          KV rows read: 10,080
+          KV bytes read: 532 KiB
+          estimated row count: 10,065 (1.9% of the table; stats collected 30 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-25 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '8 days')
+planning time: 731µs
+execution time: 966ms
+distribution: full
+vectorized: true
+rows read from KV: 23,040 (1.7 MiB)
+cumulative time spent in KV: 914ms
+maximum memory usage: 1.5 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 11,520
+    │ KV rows read: 11,520
+    │ KV bytes read: 1.1 MiB
+    │ estimated row count: 11,506
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 11,520
+          KV rows read: 11,520
+          KV bytes read: 608 KiB
+          estimated row count: 11,506 (2.2% of the table; stats collected 31 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-24 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '9 days')
+planning time: 4ms
+execution time: 1.3s
+distribution: full
+vectorized: true
+rows read from KV: 25,920 (1.9 MiB)
+cumulative time spent in KV: 1.2s
+maximum memory usage: 1.7 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 12,960
+    │ KV rows read: 12,960
+    │ KV bytes read: 1.2 MiB
+    │ estimated row count: 12,946
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 12,960
+          KV rows read: 12,960
+          KV bytes read: 684 KiB
+          estimated row count: 12,946 (2.5% of the table; stats collected 32 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-23 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '10 days')
+planning time: 1ms
+execution time: 1.2s
+distribution: full
+vectorized: true
+rows read from KV: 28,800 (2.1 MiB)
+cumulative time spent in KV: 1.1s
+maximum memory usage: 1.8 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 14,400
+    │ KV rows read: 14,400
+    │ KV bytes read: 1.4 MiB
+    │ estimated row count: 14,386
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 14,400
+          KV rows read: 14,400
+          KV bytes read: 760 KiB
+          estimated row count: 14,386 (2.7% of the table; stats collected 33 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-22 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '12 days')
+planning time: 2ms
+execution time: 1.3s
+distribution: full
+vectorized: true
+rows read from KV: 34,560 (2.6 MiB)
+cumulative time spent in KV: 1.3s
+maximum memory usage: 2.1 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 17,280
+    │ KV rows read: 17,280
+    │ KV bytes read: 1.7 MiB
+    │ estimated row count: 17,266
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 17,280
+          KV rows read: 17,280
+          KV bytes read: 912 KiB
+          estimated row count: 17,266 (3.3% of the table; stats collected 35 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-20 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '14 days')
+planning time: 632µs
+execution time: 1.6s
+distribution: full
+vectorized: true
+rows read from KV: 40,320 (3.0 MiB)
+cumulative time spent in KV: 1.5s
+maximum memory usage: 2.4 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 20,160
+    │ KV rows read: 20,160
+    │ KV bytes read: 1.9 MiB
+    │ estimated row count: 20,146
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 20,160
+          KV rows read: 20,160
+          KV bytes read: 1.0 MiB
+          estimated row count: 20,146 (3.8% of the table; stats collected 36 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-18 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '16 days')
+planning time: 922µs
+execution time: 1.9s
+distribution: full
+vectorized: true
+rows read from KV: 46,080 (3.4 MiB)
+cumulative time spent in KV: 1.8s
+maximum memory usage: 2.8 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 23,040
+    │ KV rows read: 23,040
+    │ KV bytes read: 2.2 MiB
+    │ estimated row count: 23,026
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 23,040
+          KV rows read: 23,040
+          KV bytes read: 1.2 MiB
+          estimated row count: 23,026 (4.4% of the table; stats collected 38 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-16 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '18 days')
+planning time: 871µs
+execution time: 2s
+distribution: full
+vectorized: true
+rows read from KV: 51,840 (3.8 MiB)
+cumulative time spent in KV: 2s
+maximum memory usage: 3.1 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 25,920
+    │ KV rows read: 25,920
+    │ KV bytes read: 2.5 MiB
+    │ estimated row count: 25,906
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 25,920
+          KV rows read: 25,920
+          KV bytes read: 1.3 MiB
+          estimated row count: 25,906 (4.9% of the table; stats collected 40 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-14 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '20 days')
+planning time: 863µs
+execution time: 2.4s
+distribution: full
+vectorized: true
+rows read from KV: 57,600 (4.3 MiB)
+cumulative time spent in KV: 2.3s
+maximum memory usage: 3.4 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 28,800
+    │ KV rows read: 28,800
+    │ KV bytes read: 2.8 MiB
+    │ estimated row count: 28,786
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 28,800
+          KV rows read: 28,800
+          KV bytes read: 1.5 MiB
+          estimated row count: 28,786 (5.5% of the table; stats collected 43 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-12 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '30 days')
+planning time: 620µs
+execution time: 3.3s
+distribution: full
+vectorized: true
+rows read from KV: 86,400 (6.4 MiB)
+cumulative time spent in KV: 3.2s
+maximum memory usage: 4.9 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 43,200
+    │ KV rows read: 43,200
+    │ KV bytes read: 4.2 MiB
+    │ estimated row count: 43,187
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 43,200
+          KV rows read: 43,200
+          KV bytes read: 2.2 MiB
+          estimated row count: 43,187 (8.2% of the table; stats collected 46 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-12-02 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '40 days')
+planning time: 950µs
+execution time: 4.4s
+distribution: full
+vectorized: true
+rows read from KV: 115,200 (3.9 MiB)
+cumulative time spent in KV: 4.2s
+maximum memory usage: 5.4 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 57,600
+    │ KV rows read: 57,600
+    │ KV bytes read: 981 KiB
+    │ estimated row count: 57,588
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 57,600
+          KV rows read: 57,600
+          KV bytes read: 3.0 MiB
+          estimated row count: 57,588 (11% of the table; stats collected 50 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-11-22 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '90 days')
+planning time: 1ms
+execution time: 8.9s
+distribution: full
+vectorized: true
+rows read from KV: 259,200 (10 MiB)
+cumulative time spent in KV: 8.6s
+maximum memory usage: 5.4 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 129,600
+    │ KV rows read: 129,600
+    │ KV bytes read: 3.3 MiB
+    │ estimated row count: 129,591
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 129,600
+          KV rows read: 129,600
+          KV bytes read: 6.7 MiB
+          estimated row count: 129,591 (25% of the table; stats collected 59 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-10-03 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '180 days')
+planning time: 1ms
+execution time: 15s
+distribution: full
+vectorized: true
+rows read from KV: 518,400 (15 MiB)
+cumulative time spent in KV: 14.5s
+maximum memory usage: 5.4 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 259,200
+    │ KV rows read: 259,200
+    │ KV bytes read: 2.0 MiB
+    │ estimated row count: 259,197
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 259,200
+          KV rows read: 259,200
+          KV bytes read: 13 MiB
+          estimated row count: 259,197 (49% of the table; stats collected 1 minute ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-07-05 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '270 days')
+planning time: 2ms
+execution time: 20.5s
+distribution: full
+vectorized: true
+rows read from KV: 777,600 (21 MiB)
+cumulative time spent in KV: 19.7s
+maximum memory usage: 5.4 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 388,800
+    │ KV rows read: 388,800
+    │ KV bytes read: 740 KiB
+    │ estimated row count: 386,209
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 388,800
+          KV rows read: 388,800
+          KV bytes read: 20 MiB
+          estimated row count: 386,209 (73% of the table; stats collected 32 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-04-06 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_timestamp_i1  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '360 days')
+planning time: 1ms
+execution time: 26.7s
+distribution: full
+vectorized: true
+rows read from KV: 1,036,800 (31 MiB)
+cumulative time spent in KV: 25.7s
+maximum memory usage: 5.4 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1
+    │ actual row count: 518,400
+    │ KV rows read: 518,400
+    │ KV bytes read: 4.0 MiB
+    │ estimated row count: 518,297
+    │ table: timeseries_data@primary
+    │
+    └── • scan
+          cluster nodes: n1
+          actual row count: 518,400
+          KV rows read: 518,400
+          KV bytes read: 27 MiB
+          estimated row count: 518,297 (99% of the table; stats collected 59 seconds ago)
+          table: timeseries_data@timeseries_timestamp_i1
+          spans: [/'2021-01-06 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '0.5 days')
+planning time: 775µs
+execution time: 5ms
+distribution: full
+vectorized: true
+rows read from KV: 720 (44 KiB)
+cumulative time spent in KV: 2ms
+maximum memory usage: 200 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 720
+      KV rows read: 720
+      KV bytes read: 44 KiB
+      estimated row count: 833 (0.16% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-31 12:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '1 days')
+planning time: 1ms
+execution time: 3ms
+distribution: full
+vectorized: true
+rows read from KV: 1,440 (89 KiB)
+cumulative time spent in KV: 2ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 1,440
+      KV rows read: 1,440
+      KV bytes read: 89 KiB
+      estimated row count: 1,622 (0.31% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-31 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '2 days')
+planning time: 1ms
+execution time: 5ms
+distribution: full
+vectorized: true
+rows read from KV: 2,880 (177 KiB)
+cumulative time spent in KV: 4ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 2,880
+      KV rows read: 2,880
+      KV bytes read: 177 KiB
+      estimated row count: 3,226 (0.61% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-30 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '3 days')
+planning time: 660µs
+execution time: 5ms
+distribution: full
+vectorized: true
+rows read from KV: 4,320 (266 KiB)
+cumulative time spent in KV: 4ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 4,320
+      KV rows read: 4,320
+      KV bytes read: 266 KiB
+      estimated row count: 4,723 (0.90% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-29 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '4 days')
+planning time: 704µs
+execution time: 6ms
+distribution: full
+vectorized: true
+rows read from KV: 5,760 (355 KiB)
+cumulative time spent in KV: 5ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 5,760
+      KV rows read: 5,760
+      KV bytes read: 355 KiB
+      estimated row count: 6,120 (1.2% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-28 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '5 days')
+planning time: 762µs
+execution time: 6ms
+distribution: full
+vectorized: true
+rows read from KV: 7,200 (443 KiB)
+cumulative time spent in KV: 5ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 7,200
+      KV rows read: 7,200
+      KV bytes read: 443 KiB
+      estimated row count: 7,350 (1.4% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-27 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '5 days')
+planning time: 247µs
+execution time: 8ms
+distribution: full
+vectorized: true
+rows read from KV: 7,200 (443 KiB)
+cumulative time spent in KV: 6ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 7,200
+      KV rows read: 7,200
+      KV bytes read: 443 KiB
+      estimated row count: 7,350 (1.4% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-27 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '7 days')
+planning time: 783µs
+execution time: 11ms
+distribution: full
+vectorized: true
+rows read from KV: 10,080 (621 KiB)
+cumulative time spent in KV: 9ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 10,080
+      KV rows read: 10,080
+      KV bytes read: 621 KiB
+      estimated row count: 10,097 (1.9% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-25 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '8 days')
+planning time: 1ms
+execution time: 12ms
+distribution: full
+vectorized: true
+rows read from KV: 11,520 (709 KiB)
+cumulative time spent in KV: 11ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 11,520
+      KV rows read: 11,520
+      KV bytes read: 709 KiB
+      estimated row count: 11,448 (2.2% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-24 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '9 days')
+planning time: 887µs
+execution time: 14ms
+distribution: full
+vectorized: true
+rows read from KV: 12,960 (798 KiB)
+cumulative time spent in KV: 13ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 12,960
+      KV rows read: 12,960
+      KV bytes read: 798 KiB
+      estimated row count: 12,670 (2.4% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-23 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '10 days')
+planning time: 1ms
+execution time: 15ms
+distribution: full
+vectorized: true
+rows read from KV: 14,400 (887 KiB)
+cumulative time spent in KV: 14ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 14,400
+      KV rows read: 14,400
+      KV bytes read: 887 KiB
+      estimated row count: 14,022 (2.7% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-22 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '12 days')
+planning time: 910µs
+execution time: 15ms
+distribution: full
+vectorized: true
+rows read from KV: 17,280 (1.0 MiB)
+cumulative time spent in KV: 14ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 17,280
+      KV rows read: 17,280
+      KV bytes read: 1.0 MiB
+      estimated row count: 17,053 (3.2% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-20 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '14 days')
+planning time: 1ms
+execution time: 19ms
+distribution: full
+vectorized: true
+rows read from KV: 20,160 (1.2 MiB)
+cumulative time spent in KV: 18ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 20,160
+      KV rows read: 20,160
+      KV bytes read: 1.2 MiB
+      estimated row count: 20,175 (3.8% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-18 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '16 days')
+planning time: 740µs
+execution time: 19ms
+distribution: full
+vectorized: true
+rows read from KV: 23,040 (1.4 MiB)
+cumulative time spent in KV: 18ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 23,040
+      KV rows read: 23,040
+      KV bytes read: 1.4 MiB
+      estimated row count: 23,032 (4.4% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-16 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '18 days')
+planning time: 577µs
+execution time: 25ms
+distribution: full
+vectorized: true
+rows read from KV: 25,920 (1.6 MiB)
+cumulative time spent in KV: 24ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 25,920
+      KV rows read: 25,920
+      KV bytes read: 1.6 MiB
+      estimated row count: 26,351 (5.0% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-14 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '20 days')
+planning time: 2ms
+execution time: 37ms
+distribution: full
+vectorized: true
+rows read from KV: 28,800 (1.7 MiB)
+cumulative time spent in KV: 36ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 28,800
+      KV rows read: 28,800
+      KV bytes read: 1.7 MiB
+      estimated row count: 29,676 (5.6% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-12 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '30 days')
+planning time: 770µs
+execution time: 48ms
+distribution: full
+vectorized: true
+rows read from KV: 43,200 (2.6 MiB)
+cumulative time spent in KV: 46ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 43,200
+      KV rows read: 43,200
+      KV bytes read: 2.6 MiB
+      estimated row count: 43,314 (8.2% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-12-02 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '40 days')
+planning time: 1ms
+execution time: 65ms
+distribution: full
+vectorized: true
+rows read from KV: 57,600 (3.5 MiB)
+cumulative time spent in KV: 63ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 57,600
+      KV rows read: 57,600
+      KV bytes read: 3.5 MiB
+      estimated row count: 57,501 (11% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-11-22 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '90 days')
+planning time: 719µs
+execution time: 147ms
+distribution: full
+vectorized: true
+rows read from KV: 129,600 (7.8 MiB)
+cumulative time spent in KV: 144ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 129,600
+      KV rows read: 129,600
+      KV bytes read: 7.8 MiB
+      estimated row count: 131,420 (25% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-10-03 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '180 days')
+planning time: 1ms
+execution time: 243ms
+distribution: full
+vectorized: true
+rows read from KV: 259,200 (16 MiB)
+cumulative time spent in KV: 239ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 259,200
+      KV rows read: 259,200
+      KV bytes read: 16 MiB
+      estimated row count: 257,292 (49% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-07-05 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '270 days')
+planning time: 1ms
+execution time: 404ms
+distribution: full
+vectorized: true
+rows read from KV: 388,800 (23 MiB)
+cumulative time spent in KV: 398ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 388,800
+      KV rows read: 388,800
+      KV bytes read: 23 MiB
+      estimated row count: 386,209 (73% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-04-06 00:00:00.000001' - ]
+EXPLAIN ANALYZE SELECT AVG(measurement) FROM timeseries_data@timeseries_covering  WHERE measurement_timestamp > ((date '20220101')- INTERVAL '360 days')
+planning time: 2ms
+execution time: 570ms
+distribution: full
+vectorized: true
+rows read from KV: 518,400 (31 MiB)
+cumulative time spent in KV: 561ms
+maximum memory usage: 230 KiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n1
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • scan
+      cluster nodes: n1
+      actual row count: 518,400
+      KV rows read: 518,400
+      KV bytes read: 31 MiB
+      estimated row count: 518,297 (99% of the table; stats collected 1 minute ago)
+      table: timeseries_data@timeseries_covering
+      spans: [/'2021-01-06 00:00:00.000001' - ]

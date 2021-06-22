@@ -1,3 +1,4 @@
+DROP DATABASE studenttests;
 CREATE DATABASE studenttests;
 
 CREATE TABLE public.studentstestdemormalized (
@@ -30,6 +31,7 @@ CREATE TABLE public.studentstestdemormalized (
 DROP SCHEMA NORMALIZED cascade;
 
 CREATE SCHEMA NORMALIZED;
+ SET SCHEMA NORMALIZED ;
 
 CREATE TABLE "normalized".students (
 	student_id uuid NOT NULL PRIMARY KEY,
@@ -69,6 +71,90 @@ CREATE TABLE "normalized".studentTest (
     CONSTRAINT testAnswers_fk1 FOREIGN KEY (test_id,Question_No) REFERENCES "normalized".testQuestions(test_id,Question_No),
     CONSTRAINT testAnswers_fk2 FOREIGN KEY (student_id,test_id) REFERENCES "normalized".studentTest(student_id,test_id)
    );
+  
+INSERT INTO students (student_id,name,address,dob)
+with recursive series as (
+	select 1 as id union all
+	select id + 1 as id
+   from series
+   where id < 10000),
+    randoms AS (
+  SELECT id int_id,(random()*10000000)::int randomInt, 
+            random() randomFloat,
+             md5(random()::STRING) randomString ,
+            (now()-INTERVAL '30 years')+ (random()*20||' years')::INTERVAL randomDate FROM series)
+ SELECT gen_random_uuid(),randomString,randomString, randomDate::date FROM randoms;
+
+CREATE TABLE NORMALIZED.classes (
+	class_id uuid NOT NULL PRIMARY KEY,
+	class_name STRING,
+	lecturer_name string
+ );
+
+INSERT INTO classes (class_id,class_name,lecturer_name)
+with recursive series as (
+	select 1 as id union all
+	select id + 1 as id
+   from series
+   where id < 10000),
+    randoms AS (
+  SELECT id int_id,(random()*10000000)::int randomInt, 
+            random() randomFloat,
+             md5(random()::STRING) randomString ,
+            (now()-INTERVAL '30 years')+ (random()*20||' years')::INTERVAL randomDate FROM series)
+ SELECT gen_random_uuid(),randomString,randomString FROM randoms;
+
+DROP TABLE studentClasses;
+
+CREATE TABLE studentClasses (
+	student_id uuid NOT NULL,
+	class_id uuid NOT NULL,
+	PRIMARY KEY (student_id,class_id),
+	CONSTRAINT studentClassesfk1 FOREIGN KEY (student_id) REFERENCES students(student_id),
+	CONSTRAINT studentClassesfk2 FOREIGN KEY (class_id) REFERENCES classes(class_id)
+);
+
+INSERT INTO studentClasses(student_id,class_Id)
+SELECT student_id, class_id FROM 
+(SELECT student_id FROM students LIMIT 100) s CROSS JOIN
+(SELECT class_id FROM classes LIMIT 100) c;
+
+SELECT * FROM studentClasses LIMIT 1;
+
+SELECT class_name FROM students 
+  JOIN studentClasses USING(student_id) 
+  JOIN classes USING(class_id)
+ WHERE student_id='000390a6-4e1d-4bc1-aad7-66b645131d54';
+
+ALTER TABLE students ADD COLUMN classes UUID[];
+
+UPDATE students s SET classes= (
+       SELECT array_agg(class_id) 
+        FROM studentClasses sc 
+       WHERE s.student_id=sc.student_id);
+      
+SELECT * FROM students WHERE student_id='000390a6-4e1d-4bc1-aad7-66b645131d54';
+
+WITH students_classes AS (
+	SELECT student_id , UNNEST(classes) class_id  
+	  FROM students
+) 
+SELECT class_name FROM classes 
+  JOIN students_classes USING(class_id)
+ WHERE student_id='000390a6-4e1d-4bc1-aad7-66b645131d54';
+
+
+ 
+ SELECT s.student_id,s.test_id,question_no,questionanswer 
+  FROM studenttest s 
+  JOIN testanswers t on(t.student_id=s.student_id AND t.test_id=s.test_id)
+ WHERE s.student_id=:student_id 
+   AND s.test_id=:test_id;
+  
+
+ 
+ 
+
 
 DROP SCHEMA OVERNORMALIZED CASCADE;
 
@@ -107,5 +193,30 @@ UPDATE studenttest s
  WHERE student_id='2fdaadf5-ff3e-45c4-bc92-cc0d566e1ad9' 
    AND test_id='dca69ac4-6c53-4efb-8c7e-bca9f412e2ee'  
 
-SELECT gen_random_uuid();
+   
+CREATE SCHEMA jsonTests;
+SET SCHEMA jsonTests;
+
+CREATE TABLE  studentTest (
+	student_id uuid NOT NULL ,
+	test_id uuid NOT NULL,
+	testDate date NOT NULL, 
+	answers JSONB
+);
+
+INSERT INTO studentTest (student_id,test_id,testDate,answers)
+ VALUES ('2fdaadf5-ff3e-45c4-bc92-cc0d566e1ad9','dca69ac4-6c53-4efb-8c7e-bca9f412e2ee',now(),
+         '{"answers":[
+			 {"questionNumber":1,"Answer":5},
+			 {"questionNumber":2,"Answer":25},
+			 {"questionNumber":3,"Answer":58},
+			 {"questionNumber":4,"Answer":3425},
+			 {"questionNumber":5,"Answer":432},
+			 {"questionNumber":6,"Answer":0},
+			 {"questionNumber":7,"Answer":673}
+		   ]}');
+   
+  
+
+
 

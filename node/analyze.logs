@@ -1,0 +1,815 @@
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data  WHERE indcolumn< 10000
+planning time: 16ms
+execution time: 275ms
+distribution: full
+vectorized: true
+rows read from KV: 19,998 (1.0 MiB)
+cumulative time spent in KV: 261ms
+maximum memory usage: 1.1 MiB
+network usage: 0 B (0 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n2
+    │ actual row count: 9,999
+    │ KV rows read: 9,999
+    │ KV bytes read: 743 KiB
+    │ estimated row count: 8,948
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n2
+          actual row count: 9,999
+          KV rows read: 9,999
+          KV bytes read: 331 KiB
+          estimated row count: 8,948 (0.89% of the table; stats collected 19 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /9999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data  WHERE indcolumn< 20000
+planning time: 737µs
+execution time: 737ms
+distribution: full
+vectorized: true
+rows read from KV: 39,998 (2.1 MiB)
+cumulative time spent in KV: 701ms
+maximum memory usage: 1.9 MiB
+network usage: 312 B (6 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1, n3
+    │ actual row count: 19,999
+    │ KV rows read: 19,999
+    │ KV bytes read: 1.5 MiB
+    │ estimated row count: 20,414
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n1, n3
+          actual row count: 19,999
+          KV rows read: 19,999
+          KV bytes read: 663 KiB
+          estimated row count: 20,414 (2.0% of the table; stats collected 19 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /19999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data  WHERE indcolumn< 50000
+planning time: 962µs
+execution time: 1.9s
+distribution: full
+vectorized: true
+rows read from KV: 99,998 (5.3 MiB)
+cumulative time spent in KV: 1.8s
+maximum memory usage: 4.4 MiB
+network usage: 312 B (6 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1, n3
+    │ actual row count: 49,999
+    │ KV rows read: 49,999
+    │ KV bytes read: 3.7 MiB
+    │ estimated row count: 55,998
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n1, n3
+          actual row count: 49,999
+          KV rows read: 49,999
+          KV bytes read: 1.6 MiB
+          estimated row count: 55,998 (5.6% of the table; stats collected 19 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /49999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data  WHERE indcolumn< 80000
+planning time: 821µs
+execution time: 3.1s
+distribution: full
+vectorized: true
+rows read from KV: 159,998 (4.7 MiB)
+cumulative time spent in KV: 3s
+maximum memory usage: 4.7 MiB
+network usage: 312 B (6 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1, n3
+    │ actual row count: 79,999
+    │ KV rows read: 79,999
+    │ KV bytes read: 2.0 MiB
+    │ estimated row count: 84,340
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n1, n3
+          actual row count: 79,999
+          KV rows read: 79,999
+          KV bytes read: 2.6 MiB
+          estimated row count: 84,340 (8.4% of the table; stats collected 19 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /79999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data  WHERE indcolumn< 100000
+planning time: 828µs
+execution time: 4s
+distribution: full
+vectorized: true
+rows read from KV: 199,998 (6.8 MiB)
+cumulative time spent in KV: 3.8s
+maximum memory usage: 4.7 MiB
+network usage: 312 B (6 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1, n3
+    │ actual row count: 99,999
+    │ KV rows read: 99,999
+    │ KV bytes read: 3.5 MiB
+    │ estimated row count: 102,849
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n1, n3
+          actual row count: 99,999
+          KV rows read: 99,999
+          KV bytes read: 3.3 MiB
+          estimated row count: 102,849 (10% of the table; stats collected 20 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /99999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data  WHERE indcolumn< 120000
+planning time: 912µs
+execution time: 4.7s
+distribution: full
+vectorized: true
+rows read from KV: 239,998 (5.1 MiB)
+cumulative time spent in KV: 4.5s
+maximum memory usage: 4.7 MiB
+network usage: 312 B (6 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1, n3
+    │ actual row count: 119,999
+    │ KV rows read: 119,999
+    │ KV bytes read: 1.1 MiB
+    │ estimated row count: 123,229
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n1, n3
+          actual row count: 119,999
+          KV rows read: 119,999
+          KV bytes read: 4.0 MiB
+          estimated row count: 123,229 (12% of the table; stats collected 20 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /119999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data  WHERE indcolumn< 150000
+planning time: 817µs
+execution time: 5.8s
+distribution: full
+vectorized: true
+rows read from KV: 299,998 (8.4 MiB)
+cumulative time spent in KV: 5.6s
+maximum memory usage: 4.7 MiB
+network usage: 312 B (6 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1, n3
+    │ actual row count: 149,999
+    │ KV rows read: 149,999
+    │ KV bytes read: 3.4 MiB
+    │ estimated row count: 152,447
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n1, n3
+          actual row count: 149,999
+          KV rows read: 149,999
+          KV bytes read: 5.0 MiB
+          estimated row count: 152,447 (15% of the table; stats collected 20 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /149999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data  WHERE indcolumn< 180000
+planning time: 914µs
+execution time: 653ms
+distribution: full
+vectorized: true
+rows read from KV: 1,000,000 (74 MiB)
+cumulative time spent in KV: 639ms
+maximum memory usage: 170 KiB
+network usage: 152 B (3 messages)
+
+• group (scalar)
+│ cluster nodes: n3
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n3
+    │ actual row count: 179,999
+    │ estimated row count: 183,410
+    │ filter: indcolumn < 180000
+    │
+    └── • scan
+          cluster nodes: n3
+          actual row count: 1,000,000
+          KV rows read: 1,000,000
+          KV bytes read: 74 MiB
+          estimated row count: 1,000,000 (100% of the table; stats collected 20 minutes ago)
+          table: clustered_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data  WHERE indcolumn< 200000
+planning time: 863µs
+execution time: 672ms
+distribution: full
+vectorized: true
+rows read from KV: 1,000,000 (74 MiB)
+cumulative time spent in KV: 658ms
+maximum memory usage: 170 KiB
+network usage: 152 B (3 messages)
+
+• group (scalar)
+│ cluster nodes: n3
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n3
+    │ actual row count: 199,999
+    │ estimated row count: 203,274
+    │ filter: indcolumn < 200000
+    │
+    └── • scan
+          cluster nodes: n3
+          actual row count: 1,000,000
+          KV rows read: 1,000,000
+          KV bytes read: 74 MiB
+          estimated row count: 1,000,000 (100% of the table; stats collected 20 minutes ago)
+          table: clustered_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@clustered_data_i1  WHERE indcolumn< 10000
+planning time: 741µs
+execution time: 283ms
+distribution: full
+vectorized: true
+rows read from KV: 19,998 (1.0 MiB)
+cumulative time spent in KV: 249ms
+maximum memory usage: 1.1 MiB
+network usage: 312 B (6 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1, n3
+    │ actual row count: 9,999
+    │ KV rows read: 9,999
+    │ KV bytes read: 743 KiB
+    │ estimated row count: 8,948
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n1, n3
+          actual row count: 9,999
+          KV rows read: 9,999
+          KV bytes read: 331 KiB
+          estimated row count: 8,948 (0.89% of the table; stats collected 20 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /9999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@clustered_data_i1  WHERE indcolumn< 20000
+planning time: 1ms
+execution time: 789ms
+distribution: full
+vectorized: true
+rows read from KV: 39,998 (2.1 MiB)
+cumulative time spent in KV: 759ms
+maximum memory usage: 1.9 MiB
+network usage: 312 B (6 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1, n3
+    │ actual row count: 19,999
+    │ KV rows read: 19,999
+    │ KV bytes read: 1.5 MiB
+    │ estimated row count: 20,414
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n1, n3
+          actual row count: 19,999
+          KV rows read: 19,999
+          KV bytes read: 663 KiB
+          estimated row count: 20,414 (2.0% of the table; stats collected 20 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /19999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@clustered_data_i1  WHERE indcolumn< 50000
+planning time: 947µs
+execution time: 2s
+distribution: full
+vectorized: true
+rows read from KV: 99,998 (5.3 MiB)
+cumulative time spent in KV: 1.9s
+maximum memory usage: 4.4 MiB
+network usage: 312 B (6 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1, n3
+    │ actual row count: 49,999
+    │ KV rows read: 49,999
+    │ KV bytes read: 3.7 MiB
+    │ estimated row count: 55,998
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n1, n3
+          actual row count: 49,999
+          KV rows read: 49,999
+          KV bytes read: 1.6 MiB
+          estimated row count: 55,998 (5.6% of the table; stats collected 20 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /49999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@clustered_data_i1  WHERE indcolumn< 80000
+planning time: 892µs
+execution time: 3.1s
+distribution: full
+vectorized: true
+rows read from KV: 159,998 (4.7 MiB)
+cumulative time spent in KV: 3s
+maximum memory usage: 4.7 MiB
+network usage: 312 B (6 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1, n3
+    │ actual row count: 79,999
+    │ KV rows read: 79,999
+    │ KV bytes read: 2.0 MiB
+    │ estimated row count: 84,340
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n1, n3
+          actual row count: 79,999
+          KV rows read: 79,999
+          KV bytes read: 2.6 MiB
+          estimated row count: 84,340 (8.4% of the table; stats collected 20 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /79999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@clustered_data_i1  WHERE indcolumn< 100000
+planning time: 833µs
+execution time: 4s
+distribution: full
+vectorized: true
+rows read from KV: 199,998 (6.8 MiB)
+cumulative time spent in KV: 3.9s
+maximum memory usage: 4.7 MiB
+network usage: 312 B (6 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1, n3
+    │ actual row count: 99,999
+    │ KV rows read: 99,999
+    │ KV bytes read: 3.5 MiB
+    │ estimated row count: 102,849
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n1, n3
+          actual row count: 99,999
+          KV rows read: 99,999
+          KV bytes read: 3.3 MiB
+          estimated row count: 102,849 (10% of the table; stats collected 20 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /99999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@clustered_data_i1  WHERE indcolumn< 120000
+planning time: 793µs
+execution time: 4.6s
+distribution: full
+vectorized: true
+rows read from KV: 239,998 (5.1 MiB)
+cumulative time spent in KV: 4.5s
+maximum memory usage: 4.7 MiB
+network usage: 312 B (6 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1, n3
+    │ actual row count: 119,999
+    │ KV rows read: 119,999
+    │ KV bytes read: 1.1 MiB
+    │ estimated row count: 123,229
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n1, n3
+          actual row count: 119,999
+          KV rows read: 119,999
+          KV bytes read: 4.0 MiB
+          estimated row count: 123,229 (12% of the table; stats collected 20 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /119999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@clustered_data_i1  WHERE indcolumn< 150000
+planning time: 888µs
+execution time: 5.7s
+distribution: full
+vectorized: true
+rows read from KV: 299,998 (8.4 MiB)
+cumulative time spent in KV: 5.6s
+maximum memory usage: 4.7 MiB
+network usage: 312 B (6 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1, n3
+    │ actual row count: 149,999
+    │ KV rows read: 149,999
+    │ KV bytes read: 3.4 MiB
+    │ estimated row count: 152,447
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n1, n3
+          actual row count: 149,999
+          KV rows read: 149,999
+          KV bytes read: 5.0 MiB
+          estimated row count: 152,447 (15% of the table; stats collected 20 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /149999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@clustered_data_i1  WHERE indcolumn< 180000
+planning time: 1ms
+execution time: 7.1s
+distribution: full
+vectorized: true
+rows read from KV: 359,998 (7.7 MiB)
+cumulative time spent in KV: 6.9s
+maximum memory usage: 4.7 MiB
+network usage: 312 B (6 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1, n3
+    │ actual row count: 179,999
+    │ KV rows read: 179,999
+    │ KV bytes read: 1.7 MiB
+    │ estimated row count: 183,410
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n1, n3
+          actual row count: 179,999
+          KV rows read: 179,999
+          KV bytes read: 6.1 MiB
+          estimated row count: 183,410 (18% of the table; stats collected 20 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /179999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@clustered_data_i1  WHERE indcolumn< 200000
+planning time: 1ms
+execution time: 7.7s
+distribution: full
+vectorized: true
+rows read from KV: 399,998 (9.9 MiB)
+cumulative time spent in KV: 7.5s
+maximum memory usage: 4.7 MiB
+network usage: 312 B (6 messages)
+
+• group (scalar)
+│ cluster nodes: n2
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • index join
+    │ cluster nodes: n1, n3
+    │ actual row count: 199,999
+    │ KV rows read: 199,999
+    │ KV bytes read: 3.2 MiB
+    │ estimated row count: 203,274
+    │ table: clustered_data@primary
+    │
+    └── • scan
+          cluster nodes: n1, n3
+          actual row count: 199,999
+          KV rows read: 199,999
+          KV bytes read: 6.7 MiB
+          estimated row count: 203,274 (20% of the table; stats collected 20 minutes ago)
+          table: clustered_data@clustered_data_i1
+          spans: [ - /199999]
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@primary  WHERE indcolumn< 10000
+planning time: 1ms
+execution time: 686ms
+distribution: full
+vectorized: true
+rows read from KV: 1,000,000 (74 MiB)
+cumulative time spent in KV: 673ms
+maximum memory usage: 170 KiB
+network usage: 152 B (3 messages)
+
+• group (scalar)
+│ cluster nodes: n3
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n3
+    │ actual row count: 9,999
+    │ estimated row count: 8,948
+    │ filter: indcolumn < 10000
+    │
+    └── • scan
+          cluster nodes: n3
+          actual row count: 1,000,000
+          KV rows read: 1,000,000
+          KV bytes read: 74 MiB
+          estimated row count: 1,000,000 (100% of the table; stats collected 20 minutes ago)
+          table: clustered_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@primary  WHERE indcolumn< 20000
+planning time: 687µs
+execution time: 670ms
+distribution: full
+vectorized: true
+rows read from KV: 1,000,000 (74 MiB)
+cumulative time spent in KV: 657ms
+maximum memory usage: 170 KiB
+network usage: 152 B (3 messages)
+
+• group (scalar)
+│ cluster nodes: n3
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n3
+    │ actual row count: 19,999
+    │ estimated row count: 20,414
+    │ filter: indcolumn < 20000
+    │
+    └── • scan
+          cluster nodes: n3
+          actual row count: 1,000,000
+          KV rows read: 1,000,000
+          KV bytes read: 74 MiB
+          estimated row count: 1,000,000 (100% of the table; stats collected 20 minutes ago)
+          table: clustered_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@primary  WHERE indcolumn< 50000
+planning time: 649µs
+execution time: 645ms
+distribution: full
+vectorized: true
+rows read from KV: 1,000,000 (74 MiB)
+cumulative time spent in KV: 631ms
+maximum memory usage: 170 KiB
+network usage: 152 B (3 messages)
+
+• group (scalar)
+│ cluster nodes: n3
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n3
+    │ actual row count: 49,999
+    │ estimated row count: 55,998
+    │ filter: indcolumn < 50000
+    │
+    └── • scan
+          cluster nodes: n3
+          actual row count: 1,000,000
+          KV rows read: 1,000,000
+          KV bytes read: 74 MiB
+          estimated row count: 1,000,000 (100% of the table; stats collected 20 minutes ago)
+          table: clustered_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@primary  WHERE indcolumn< 80000
+planning time: 695µs
+execution time: 673ms
+distribution: full
+vectorized: true
+rows read from KV: 1,000,000 (74 MiB)
+cumulative time spent in KV: 659ms
+maximum memory usage: 170 KiB
+network usage: 152 B (3 messages)
+
+• group (scalar)
+│ cluster nodes: n3
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n3
+    │ actual row count: 79,999
+    │ estimated row count: 84,340
+    │ filter: indcolumn < 80000
+    │
+    └── • scan
+          cluster nodes: n3
+          actual row count: 1,000,000
+          KV rows read: 1,000,000
+          KV bytes read: 74 MiB
+          estimated row count: 1,000,000 (100% of the table; stats collected 20 minutes ago)
+          table: clustered_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@primary  WHERE indcolumn< 100000
+planning time: 680µs
+execution time: 645ms
+distribution: full
+vectorized: true
+rows read from KV: 1,000,000 (74 MiB)
+cumulative time spent in KV: 632ms
+maximum memory usage: 170 KiB
+network usage: 152 B (3 messages)
+
+• group (scalar)
+│ cluster nodes: n3
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n3
+    │ actual row count: 99,999
+    │ estimated row count: 102,849
+    │ filter: indcolumn < 100000
+    │
+    └── • scan
+          cluster nodes: n3
+          actual row count: 1,000,000
+          KV rows read: 1,000,000
+          KV bytes read: 74 MiB
+          estimated row count: 1,000,000 (100% of the table; stats collected 20 minutes ago)
+          table: clustered_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@primary  WHERE indcolumn< 120000
+planning time: 723µs
+execution time: 647ms
+distribution: full
+vectorized: true
+rows read from KV: 1,000,000 (74 MiB)
+cumulative time spent in KV: 628ms
+maximum memory usage: 170 KiB
+network usage: 152 B (3 messages)
+
+• group (scalar)
+│ cluster nodes: n3
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n3
+    │ actual row count: 119,999
+    │ estimated row count: 123,229
+    │ filter: indcolumn < 120000
+    │
+    └── • scan
+          cluster nodes: n3
+          actual row count: 1,000,000
+          KV rows read: 1,000,000
+          KV bytes read: 74 MiB
+          estimated row count: 1,000,000 (100% of the table; stats collected 20 minutes ago)
+          table: clustered_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@primary  WHERE indcolumn< 150000
+planning time: 712µs
+execution time: 635ms
+distribution: full
+vectorized: true
+rows read from KV: 1,000,000 (74 MiB)
+cumulative time spent in KV: 621ms
+maximum memory usage: 170 KiB
+network usage: 152 B (3 messages)
+
+• group (scalar)
+│ cluster nodes: n3
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n3
+    │ actual row count: 149,999
+    │ estimated row count: 152,447
+    │ filter: indcolumn < 150000
+    │
+    └── • scan
+          cluster nodes: n3
+          actual row count: 1,000,000
+          KV rows read: 1,000,000
+          KV bytes read: 74 MiB
+          estimated row count: 1,000,000 (100% of the table; stats collected 20 minutes ago)
+          table: clustered_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@primary  WHERE indcolumn< 180000
+planning time: 673µs
+execution time: 647ms
+distribution: full
+vectorized: true
+rows read from KV: 1,000,000 (74 MiB)
+cumulative time spent in KV: 632ms
+maximum memory usage: 170 KiB
+network usage: 152 B (3 messages)
+
+• group (scalar)
+│ cluster nodes: n3
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n3
+    │ actual row count: 179,999
+    │ estimated row count: 183,410
+    │ filter: indcolumn < 180000
+    │
+    └── • scan
+          cluster nodes: n3
+          actual row count: 1,000,000
+          KV rows read: 1,000,000
+          KV bytes read: 74 MiB
+          estimated row count: 1,000,000 (100% of the table; stats collected 20 minutes ago)
+          table: clustered_data@primary
+          spans: FULL SCAN
+EXPLAIN ANALYZE SELECT MAX(dateData) FROM clustered_data@primary  WHERE indcolumn< 200000
+planning time: 687µs
+execution time: 644ms
+distribution: full
+vectorized: true
+rows read from KV: 1,000,000 (74 MiB)
+cumulative time spent in KV: 630ms
+maximum memory usage: 170 KiB
+network usage: 152 B (3 messages)
+
+• group (scalar)
+│ cluster nodes: n3
+│ actual row count: 1
+│ estimated row count: 1
+│
+└── • filter
+    │ cluster nodes: n3
+    │ actual row count: 199,999
+    │ estimated row count: 203,274
+    │ filter: indcolumn < 200000
+    │
+    └── • scan
+          cluster nodes: n3
+          actual row count: 1,000,000
+          KV rows read: 1,000,000
+          KV bytes read: 74 MiB
+          estimated row count: 1,000,000 (100% of the table; stats collected 20 minutes ago)
+          table: clustered_data@primary
+          spans: FULL SCAN
