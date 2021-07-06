@@ -21,9 +21,9 @@ INSERT INTO blog_posts ( post_timestamp,userid,summary)
 SELECT ((date '20220101') -   (id||' minutes')::INTERVAL)::timestamp , ROUND(random()*1000)::int , 
 md5(random()::STRING)||md5(random()::STRING)||md5(random()::STRING)||md5(random()::STRING)||md5(random()::STRING)||md5(random()::STRING)||md5(random()::STRING)||md5(random()::STRING)||md5(random()::STRING)||md5(random()::STRING)||md5(random()::STRING) randomString  FROM series;
 
-
-CREATE INDEX timeseries_covering ON blog_posts(post_timestamp) STORING (summary);
+DROP INDEX IF EXISTS timeseries_covering;
+CREATE INDEX timeseries_covering ON blog_posts(post_timestamp DESC) STORING (summary);
 
 analyze  blog_posts;
 
-EXPLAIN  SELECT post_timestamp, summary FROM blog_posts ORDER BY post_timestamp DESC 
+EXPLAIN ANALYZE SELECT post_timestamp, summary FROM blog_posts ORDER BY post_timestamp DESC 

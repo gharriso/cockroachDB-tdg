@@ -1,26 +1,23 @@
-// Example of connecting to CockroachDB using NodeJS
-
 const CrClient = require('pg').Client;
- // load pg client
+
 const debug = false;
- 
+
 
 async function main() {
     try {
-        // Check parameters
         if (process.argv.length != 6) {
             console.log('Usage: node pkTest.js nConnections nRows sleepTime CONNECTION_URI');
             process.exit(1);
         }
-        // Establish a connection using the command line URI
+
         const nConnections = process.argv[2];
         const nRows = parseInt(process.argv[3]);
         const sleepTime = process.argv[4];
         const connectionString = process.argv[5];
         const connections = [];
         let data;
-        // process.exit(1);
-                    const dbName='pktest'+Math.round((Math.random()*10000));
+
+        const dbName = 'pktest' + Math.round((Math.random() * 10000));
         for (let ci = 0; ci < nConnections; ci++) {
             connections[ci] = new CrClient(connectionString);
             await connections[ci].connect();
@@ -28,34 +25,33 @@ async function main() {
                 `SELECT CONCAT('Hello from CockroachDB at ',
                                 CAST (NOW() as STRING)) as hello`
             );
-            if (ci===0) {
+            if (ci === 0) {
                 await connections[ci].query(`CREATE DATABASE ${dbName}`);
             }
-            // Print out the error message
             console.log(data.rows[0].hello);
 
 
             await connections[ci].query(`use ${dbName}`);
         }
         await createTables(connections[0]);
-        data = dataBatch(nRows,0);
+        data = dataBatch(nRows, 0);
 
 
-        await insertTest(connections, 'int_keyed', true, data,sleepTime);
-        await insertTest(connections, 'seq_keyed', false, data,sleepTime);
-        await insertTest(connections, 'seq_cached', false, data,sleepTime);
-        await insertTest(connections, 'uuid_keyed', false, data,sleepTime);
-        await insertTest(connections, 'serial_keyed', false, data,sleepTime);
-        await insertTest(connections, 'hash_keyed', true, data,sleepTime);
-        let nextStartId=nRows+1;
-        data = dataBatch(nRows,nextStartId);
- 
-        await insertTest(connections, 'int_keyed', true, data,sleepTime);
-        await insertTest(connections, 'seq_keyed', false, data,sleepTime);
-        await insertTest(connections, 'seq_cached', false, data,sleepTime);
-        await insertTest(connections, 'uuid_keyed', false, data,sleepTime);
-        await insertTest(connections, 'serial_keyed', false, data,sleepTime);
-        await insertTest(connections, 'hash_keyed', true, data,sleepTime);
+        // await insertTest(connections, 'int_keyed', true, data,sleepTime);
+        await insertTest(connections, 'seq_keyed', false, data, sleepTime);
+        // await insertTest(connections, 'seq_cached', false, data,sleepTime);
+        await insertTest(connections, 'uuid_keyed', false, data, sleepTime);
+        await insertTest(connections, 'serial_keyed', false, data, sleepTime);
+        await insertTest(connections, 'hash_keyed', true, data, sleepTime);
+        const nextStartId = nRows + 1;
+        data = dataBatch(nRows, nextStartId);
+
+        // await insertTest(connections, 'int_keyed', true, data,sleepTime);
+        await insertTest(connections, 'seq_keyed', false, data, sleepTime);
+        // await insertTest(connections, 'seq_cached', false, data,sleepTime);
+        await insertTest(connections, 'uuid_keyed', false, data, sleepTime);
+        await insertTest(connections, 'serial_keyed', false, data, sleepTime);
+        await insertTest(connections, 'hash_keyed', true, data, sleepTime);
     } catch (error) {
         console.log(error.stack);
     }
@@ -63,18 +59,18 @@ async function main() {
     process.exit(0);
 }
 
-function dataBatch(rows,startId) {
+function dataBatch(rows, startId) {
     // console.log(rows,' ',startId);
     const data = [];
     //  Make this string large so we get lots of ranges
-    let rstring=Math.random().toString(36).replace(/[^a-z]+/g, '');
-    for (let rr=0;rr<14;rr++) {
-        rstring+=rstring;
+    let rstring = Math.random().toString(36).replace(/[^a-z]+/g, '');
+    for (let rr = 0; rr < 14; rr++) {
+        rstring += rstring;
     }
-  
-    let endKey=parseInt(startId)+parseInt(rows);
+
+    const endKey = parseInt(startId) + parseInt(rows);
     // console.log('endkey',endKey);
- 
+
     for (let ri = parseInt(startId); ri < endKey; ri += 1) {
         data.push({
             pk: ri,
@@ -86,8 +82,8 @@ function dataBatch(rows,startId) {
     return (data);
 }
 
-async function insertTest(connections, tableName, insertPk, data,sleepTime) {
-    console.log('inserting into ',tableName);
+async function insertTest(connections, tableName, insertPk, data, sleepTime) {
+    console.log('inserting into ', tableName);
     const start = new Date();
     let sqlText = `INSERT INTO ${tableName} (id,rnumber,rstring) VALUES($1,$2,$3)`;
     if (insertPk) {
@@ -112,7 +108,7 @@ async function insertTest(connections, tableName, insertPk, data,sleepTime) {
     // Print out the error message
     console.log(rs1.rows[0].n, ' rows inserted');
 
-    console.log('sleeping for ',sleepTime);
+    console.log('sleeping for ', sleepTime);
     await sleep(sleepTime);
 }
 
@@ -182,15 +178,15 @@ async function createTables(connection) {
         rstring STRING,
         PRIMARY KEY (pk) USING HASH WITH BUCKET_COUNT=18
     )`);
-    /*stmts.push(`
+    /* stmts.push(`
     INSERT INTO int_keyed (pk,id,rnumber,rstring)
-    WITH RECURSIVE series AS ( 
+    WITH RECURSIVE series AS (
     SELECT 1 AS id
      UNION ALL SELECT id + 1 AS id
       FROM series
      WHERE id < 500000 ), randoms AS ( SELECT id int_id,(random()* 10000000)::int randomInt, random() randomFloat, md5(random()::STRING) randomString ,
             ((now()-INTERVAL '30 years')+ (ROUND(random()* 20,2) || ' years')::INTERVAL)::date randomDate
-      FROM series) 
+      FROM series)
     SELECT int_id, int_id,randomInt::float,randomString||randomString||randomString||randomString  FROM randoms`);
     stmts.push('INSERT into uuid_keyed(id,rnumber,rstring) SELECT id,rnumber,rstring FROM int_keyed');
     stmts.push('INSERT into serial_keyed(id,rnumber,rstring) SELECT id,rnumber,rstring FROM int_keyed');
