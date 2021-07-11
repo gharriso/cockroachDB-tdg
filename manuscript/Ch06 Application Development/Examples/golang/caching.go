@@ -8,7 +8,8 @@ import (
 	"github.com/jackc/pgx/pgxpool"
 )
 
-var pool pgxpool.Pool
+var pool *pgxpool.Pool
+var userCache map[string]string
 var err string
 
 func main() {
@@ -23,24 +24,32 @@ func main() {
 		fmt.Fprintf(os.Stderr, "CockroachDB error: %v\n", err)
 	}
 	config.MaxConns = 40
-	*pool, err = pgxpool.ConnectConfig(ctx, config)
+	pool, err = pgxpool.ConnectConfig(ctx, config)
 
-	connection, err := pool.Acquire(ctx)
+	userCache = make(map[string]string)
+
+	// connection, err := pool.Acquire(ctx)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "CockroachDB error: %v\n", err)
 	}
 	defer pool.Close()
-	name := getUserName("ffc3c373-63ec-43fe-98ff-311f29424d8b")
+
+	name := getUserName("0c2132f8-5cf9-4e20-b23d-eda3957bc3c1")
+	name = getCachedUserName("0c2132f8-5cf9-4e20-b23d-eda3957bc3c1")
+	name = getCachedUserName("0c2132f8-5cf9-4e20-b23d-eda3957bc3c1")
 	fmt.Fprintf(os.Stdout, "%v\n", name)
+
 }
 
 func getUserName(userId string) string {
 	conn, err := pool.Acquire(context.Background())
+	defer conn.Release()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "CockroachDB error: %v\n", err)
 	}
 	sql := `SELECT name FROM movr.users WHERE id=$1`
 	rows, err := conn.Query(context.Background(), sql, userId)
+	defer rows.Close()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "CockroachDB error: %v\n", err)
 	}
@@ -51,4 +60,30 @@ func getUserName(userId string) string {
 		rows.Scan(&name)
 		return (name)
 	}
+}
+
+func getCachedUserName(userId string) string {
+
+	name, nameFound := userCache[userId]
+	if !nameFound {
+		conn, err := pool.Acquire(context.Background())
+		defer conn.Release()
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "CockroachDB error: %v\n", err)
+		}
+		fmt.Println("cache miss")
+		sql := `SELECT name FROM movr.users WHERE id=$1`
+		rows, err := conn.Query(context.Background(), sql, userId)
+		defer rows.Close()
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "CockroachDB error: %v\n", err)
+		}
+		if !rows.Next() {
+			return "Invalid userId"
+		} else {
+			rows.Scan(&name)
+			userCache[userId] = name
+		}
+	}
+	return (name)
 }
